@@ -49,4 +49,10 @@ body {
 }
 
 /* botones login */
-
+.carousel {
+  margin-top: 0px; /* igual o mayor a la altura de tu navbar */
+}
+.carousel-item img {
+  height: 600px;       /* alto fijo */
+  object-fit: cover;   /* recorta la imagen sin deformarla */
+}
