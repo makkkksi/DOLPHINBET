@@ -1,5 +1,8 @@
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 /* navbar */
@@ -8,18 +11,30 @@ body {
 }
 
 .navbar {
-  padding-top: 0.2rem;   /* arriba */
-  padding-bottom: 0.3rem; /* abajo */
-}
-.navbar-brand img {
-  height: 60px;  
+  padding-top: 0.2rem;   
+  padding-bottom: 0.3rem; 
 }
 
-.logo-img {
-  height: 70px; 
+
+.navbar-brand img {
+  height: 30px;  
   width: auto;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
-/* navbar */
+.Opciones .nav-link {
+  color: white;                  
+  font-weight: 600;
+  font-size: 16px;
+  text-transform: uppercase;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+.icon{
+  margin-right: 8px; 
+  vertical-align: middle; 
+}
 
 
 
@@ -30,29 +45,32 @@ body {
   background-color: #4472c4ff; 
   color: white;
   border: none;
+  font-weight: bold;
 }
 
-.btn-iniciar:hover {
+.btn-iniciar:hover{
   background-color: rgb(87, 147, 249); 
   color: white;
+
 }
 
 .btn-registrar {
   background-color: #70ad47ff; 
   color: white;
   border: none;
+  font-weight: bold;
 }
 
 .btn-registrar:hover {
   background-color: rgb(135, 202, 89); 
   color: white;
+
 }
 
-/* botones login */
 .carousel {
-  margin-top: 0px; /* igual o mayor a la altura de tu navbar */
+  margin-top: 0px; 
 }
 .carousel-item img {
-  height: 600px;       /* alto fijo */
-  object-fit: cover;   /* recorta la imagen sin deformarla */
+  height: 600px;       
+  object-fit: cover;   
 }
