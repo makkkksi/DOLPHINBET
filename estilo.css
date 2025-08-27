@@ -1,0 +1,52 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* navbar */
+.navbar {
+  background-color: #073763ff;
+}
+
+.navbar {
+  padding-top: 0.2rem;   /* arriba */
+  padding-bottom: 0.3rem; /* abajo */
+}
+.navbar-brand img {
+  height: 60px;  
+}
+
+.logo-img {
+  height: 70px; 
+  width: auto;
+}
+/* navbar */
+
+
+
+
+
+/* botones login */
+.btn-iniciar {
+  background-color: #4472c4ff; 
+  color: white;
+  border: none;
+}
+
+.btn-iniciar:hover {
+  background-color: rgb(87, 147, 249); 
+  color: white;
+}
+
+.btn-registrar {
+  background-color: #70ad47ff; 
+  color: white;
+  border: none;
+}
+
+.btn-registrar:hover {
+  background-color: rgb(135, 202, 89); 
+  color: white;
+}
+
+/* botones login */
+
