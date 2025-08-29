@@ -71,6 +71,7 @@ body {
   margin-top: 0px; 
 }
 .carousel-item img {
-  height: 850px;       
-  object-fit: cover;   
+  height: calc(100vh - 70px);  /* locura el css */
+  width: 100%;
+  object-fit: cover;          
 }
