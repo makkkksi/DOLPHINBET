@@ -24,22 +24,24 @@
   margin-bottom: 10px;
 }
   .Opciones .nav {
-    margin-bottom: 0; /* elimina margen inferior */
+    margin-bottom: 0; 
   }
   
 .nav-link {
+  display: inline-block;          
   color: white !important;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 16px;                
   text-transform: uppercase;
   padding: 0.5rem 1rem;
+  transition: transform 0.3s ease; 
+}
+.nav-link:hover {
+  transform: scale(1.15);        
+  cursor: pointer;
 }
 .Opciones .nav-link {
-  color: white;
-  font-weight: 600;
-  font-size: 150px;
-  text-transform: uppercase;
-  padding: 0.5rem 1rem;
+  font-size: 16px;                
 }
   .icon{
     margin-right: 8px; 
@@ -84,7 +86,7 @@
     margin-top: 0px; 
   }
   .carousel-item img {
-    height: calc(100vh - 70px);  /* locura el css */
+    height: calc(100vh - 70px);  /* locura esto del css xd*/
     width: 100%;
     object-fit: cover;          
   }
@@ -93,7 +95,7 @@
 
   .carousel-caption {
     bottom: 33%;            /* lo sube o baja */
-    text-align: center;     /* centra el texto */
+    text-align: center;     
   }
 
   .carousel-caption h2 {
@@ -111,7 +113,19 @@
   border-width: 3px !important; 
   font-size:larger !important;
    border-radius: 50px !important;
+   transition: all 0.2s ease;
 }
+
+.carousel-caption .btn.text-white.fw-bold:hover{
+  background-color: #073763ff  !important;
+  color: rgb(255, 255, 255) !important;
+  border-color:#073763ff !important ;
+
+}
+
+
+
+
 .poto{
   padding-top: 5%;
   padding-left: 10%;
@@ -123,4 +137,37 @@
 }
 .poto p{
   font-weight: 500;
+}
+
+/* Circulos del carrousel */
+.carousel-indicators {
+  bottom: 10px; 
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+.carousel-indicators button {
+  width: 12px !important;    
+  height: 12px !important;  
+  border-radius: 50% !important; 
+  background-color: rgb(255, 255, 255) !important;
+  border: none !important;
+  padding: 0 !important;         
+  margin: 0 !important;          
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+
+.carousel-indicators button.active {
+  background-color: white;
+  transform: scale(1.2); /* el activo se agranda un poco */
+}
+
+.carousel-indicators button:hover {
+  background-color: #ffd700;
+  transform: scale(1.3);
+  cursor: pointer;
+}
+.footer-custom{
+  background-color: #073763ff;
 }
