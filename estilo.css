@@ -112,3 +112,15 @@
   font-size:larger !important;
    border-radius: 50px !important;
 }
+.poto{
+  padding-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 2%;
+}
+.poto h1{
+  font-weight: 900;
+}
+.poto p{
+  font-weight: 500;
+}
