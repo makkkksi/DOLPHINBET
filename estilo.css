@@ -160,7 +160,7 @@
 
 .carousel-indicators button.active {
   background-color: white;
-  transform: scale(1.2); /* el activo se agranda un poco */
+  transform: scale(1.2); 
 }
 
 .carousel-indicators button:hover {
