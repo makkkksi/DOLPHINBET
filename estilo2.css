@@ -1,0 +1,33 @@
+
+.perfilUsuario {
+  background-color: rgb(181, 180, 180);
+  border: 1px solid #ccc;  
+  width: 98%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+.contenedorDatos {
+  display: flex;
+  gap: 2%; /* Espacio entre los divs, opcional */
+}
+.DatosPersonales {
+
+  border: 1px solid #ccc;  
+  width: 68%;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+.fotografia {
+  border: 1px solid #ccc;  
+  width: 30%;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-left: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
