@@ -1,7 +1,6 @@
 // Simulación de usuarios registrados
 const usuarios = [
-    { email: "usuario1@example.com", password: "123456" },
-    { email: "usuario2@example.com", password: "contraseña" }
+    { email: "admin@admin.com", password: "1" }
   ];
   
   document.addEventListener("DOMContentLoaded", function () {

@@ -82,6 +82,22 @@
 
   }
 
+   .btn-iniciar {
+    background-color: rgb(99, 153, 204); 
+    color: white;
+    border: none;
+    font-weight: bold;
+  }
+
+  .btn-iniciar:hover {
+    background-color: rgb(127, 168, 206); 
+    color: white;
+
+  }
+
+
+
+
   .carousel {
     margin-top: 0px; 
   }

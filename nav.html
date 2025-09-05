@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-
     <div class="row w-100 align-items-center">
       <div class="col-3 d-flex justify-content-start">
         <a class="navbar-brand d-flex align-items-center" href="index.html">
@@ -8,6 +7,7 @@
         </a>
       </div>
 
+     
       <div class="col-6 d-flex justify-content-center">
         <ul class="nav mb-0">
           <li class="nav-item">
@@ -19,45 +19,16 @@
         </ul>
       </div>
 
-      <!-- BOTÓN INGRESAR (columna derecha) -->
       <div class="col-3 d-flex justify-content-end">
-        <a href="#" class="btn btn-registrar" data-bs-toggle="modal" data-bs-target="#loginModal">
-          <i class="fa-solid fa-circle-user icon"></i>INGRESAR
-        </a>
+        <div id="userArea">
+          <a href="#" class="btn btn-iniciar" data-bs-toggle="modal" data-bs-target="#loginModal">
+            Iniciar Sesión
+          </a>
+          <a href="#" class="btn btn-registrar" data-bs-toggle="modal" data-bs-target="#registerModal">
+            Registrate  
+          </a>
+        </div>
       </div>
     </div>
   </div>
-
 </nav>
-
-<!-- modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-      </div>
-
-      <div class="modal-body">
-        <form id="loginForm">
-          <div class="mb-3">
-            <label for="loginEmail" class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" id="loginEmail" required />
-          </div>
-
-          <div class="mb-3">
-            <label for="loginPassword" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="loginPassword" required />
-          </div>
-
-          <div id="loginError" class="text-danger mb-3" style="display: none;"></div>
-
-          <button type="submit" class="btn btn-primary">Ingresar</button>
-        </form>
-      </div>
-
-    </div>
-  </div>
-</div>
