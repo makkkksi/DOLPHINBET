@@ -50,7 +50,7 @@
   width: 99%;
   height: 99%;
   object-fit: cover;
-  opacity: 0.5; /* Ajusta la transparencia */
+  opacity: 0; /* Ajusta la transparencia */
   z-index: 0;
   pointer-events: none; /* Para que la imagen no bloquee los clicks */
 }
