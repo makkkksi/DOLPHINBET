@@ -8,13 +8,24 @@
   margin-left: 10px;
 }
 .contenedorDatos {
+  width: 98%;
+  margin: 0 auto;
   display: flex;
   gap: 2%; /* Espacio entre los divs, opcional */
 }
-.DatosPersonales {
 
-  border: 1px solid #ccc;  
-  width: 68%;
+.DatosPersonales {
+  border: 3px solid black;
+  width: 99%;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+.datos{
+  border: 3px solid black;
+  width: 99%;
   padding: 1rem;
   border-radius: 8px;
   margin: 0;
@@ -22,12 +33,24 @@
   display: block;
 }
 
-.fotografia {
-  border: 1px solid #ccc;  
-  width: 30%;
+
+.fotografia {  
+  width: auto;
+  height: auto;
   padding: 1rem;
   border-radius: 8px;
   margin-left: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: block;
+}
+
+.fondo-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 99%;
+  height: 99%;
+  object-fit: cover;
+  opacity: 0.5; /* Ajusta la transparencia */
+  z-index: 0;
+  pointer-events: none; /* Para que la imagen no bloquee los clicks */
 }
