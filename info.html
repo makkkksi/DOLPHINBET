@@ -23,7 +23,98 @@
   <header id="navbar"></header>
 
 
-    <h1>Hagan aca la pagina</h1>
+
+<!--CARTA DE INICIO-->
+<section class="text-white text-center py-5" style="min-height: 60vh; background-image: linear-gradient(rgba(26, 115, 232, 0.7), rgba(9, 22, 63, 0.7)), url('IMG/Wallpaper_ruleta.png'); background-size: cover; background-position: center;">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-circle-dot me-2"></i>Ruleta de Casino
+        </h1>
+        <p class="lead mb-4">Descubre las reglas, apuestas, probabilidades y consejos para jugar de forma responsable.</p>
+ <button class="btn btn-success btn-lg" onclick="abrirJuegoRuleta()">
+            <i class="fas fa-play me-2"></i> Jugar Ahora
+        </button>
+    </div>
+</section>
+    </div>
+</section>
+
+<!-- Información -->
+<section class="container my-5">
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 col-md-12 mx-auto">
+
+      <!-- Reglas -->
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-book me-2"></i>Reglas del Juego</h5>
+          <p class="card-text">La ruleta se juega con una rueda del 0 al 36. Los jugadores apuestan antes de que el crupier lance la bola. Cuando la bola se detiene en un número, se pagan las apuestas ganadoras.</p>
+        </div>
+      </div>
+
+      <!-- Tipos de Apuesta -->
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-coins me-2"></i>Tipos de Apuesta</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pleno – Apuesta a un número (35:1)</li>
+            <li class="list-group-item">Color – Rojo, Negro o Verde (1:1 / especial para el 0)</li>
+            <li class="list-group-item">Par/Impar (1:1)</li>
+            <li class="list-group-item">Docenas – 12 números (2:1)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Probabilidades -->
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-chart-pie me-2"></i>Probabilidades y Pagos</h5>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Apuesta</th>
+                  <th>Probabilidad</th>
+                  <th>Pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Pleno</td><td>2.7%</td><td>35:1</td></tr>
+                <tr><td>Color</td><td>48.6%</td><td>1:1</td></tr>
+                <tr><td>Docena</td><td>32.4%</td><td>2:1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Juego Responsable -->
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-shield-heart me-2"></i>Consejos de Juego Responsable</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Establece un presupuesto antes de jugar.</li>
+            <li class="list-group-item">No persigas pérdidas.</li>
+            <li class="list-group-item">Juega por diversión, si es que quieres perder tu dinero.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!--FOOTER-->
+<div id="footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="nav.foot.js"></script>
+<script src="login.js"></script>
+<script>
+  function abrirJuegoRuleta() {
+    alert('Aqui hace que abra el juego de la ruleta :D ');
+  }
+</script>
 
     <script src="nav.foot.js"></script>
     

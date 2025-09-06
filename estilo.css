@@ -278,3 +278,27 @@
 .Juegos p{
   font-weight: 500;
 }
+
+
+
+
+.card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card img {
+  max-height: 250px;
+  object-fit: cover;
+}
+
+/* Título destacado */
+.card-title-custom {
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin: -20px -20px 20px -20px;
+  font-weight: bold;
+}
