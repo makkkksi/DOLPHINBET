@@ -22,7 +22,7 @@
 
   <header id="navbar"></header>
 
-<!--carrusel -->
+<!--carrusel copaio del bustrap-->
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
 
     <div class="carousel-indicators">
@@ -37,7 +37,7 @@
       <div class="carousel-caption d-none d-md-block">
         <h2>BIENVENIDO A DOLPHINBET</h2>
         <p>Apuesta como nunca.  Pierde como siempre</p>
-        <button class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
+        <button  class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2" onclick="document.getElementById('ruleta').scrollIntoView({behavior: 'smooth'})"><!--onclick + accion js puro y duro-->
           JUGAR
         </button>
       </div>
@@ -70,15 +70,78 @@
 
 
 <!-- body -->
-<div class="poto" id="poto">
+<div class="ruleta" id="ruleta">
   <h1>EL JUEGO DE LA RULETA</h1>
   <p>Nuestro simulador de ruleta reproduce con precisión la mecánica de un casino real con un modelo matemático que controla el juego en tu contra. Cada giro está diseñado para hacerte creer que tienes probabilidades de ganar, lo que significa que, estadísticamente, perderás dinero.
 El algoritmo está programado para mantener las probabilidades a favor de la casa, asegurando que la emoción del juego vaya de la mano con la certeza de que tus apuestas terminarán perdiéndose con el tiempo. Juega gratis desde casa y experimenta la ruleta tal como es: un juego de azar donde la casa siempre tiene la ventaja.</p>
+    <div class="foto_ruleta">
+      <img src="IMG/ruleta.png" alt="RULETAPENGE">
+    </div>
+    <div class="boton_apostar"> <!--boton despegable del faking bostrap-->
+            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
+            Apostar
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">50$</a></li>
+            <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">100$</a></li>
+            <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">200$</a></li>
+            <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">400$</a></li>
+          </ul>
+    </div>
+</div>
+
+<!--Aca pienso poner 3 juegos pa rellenar la apgina  nose esto lo copie del boostrap igual-->
+<div class="Juegos">
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-md-4 mb-4">
+        <a href="id.html" class="text-decoration-none">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+          </div>
+        </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <a href="id.html" class="text-decoration-none">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+          </div>
+        </div>
+        </a>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <a href="id.html" class="text-decoration-none">
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
+          </div>
+        </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
 </div>
 
 
 
+</div>
+
+
 <div id="footer"></div>
+
+
+
+
 
 
 

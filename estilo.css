@@ -142,16 +142,16 @@
 
 
 
-.poto{
+.ruleta{
   padding-top: 5%;
   padding-left: 10%;
   padding-right: 10%;
   padding-bottom: 2%;
 }
-.poto h1{
+.ruleta h1{
   font-weight: 900;
 }
-.poto p{
+.ruleta p{
   font-weight: 500;
 }
 
@@ -190,7 +190,7 @@
 
 
 
-/* MODAL LOGIN PERSONALIZADO */
+/* MODAL  */
 .modal-content {
   border-radius: 12px;
   border: none;
@@ -254,4 +254,16 @@
 
 .modal-body .btn-primary:hover {
   background-color: rgb(138, 211, 89);
+}
+.foto_ruleta{
+  text-align: center;
+  padding-top: 10px;
+}
+.foto_ruleta img{
+  width: 400px;    
+}
+
+#botonoso{
+  background-color: #073763ff !important;
+  border: #073763ff;
 }

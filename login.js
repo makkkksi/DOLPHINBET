@@ -1,6 +1,7 @@
 
 const usuarios = [
-  { email: "admin@admin.com", password: "123456" }
+  { email: "admin@admin.com", password: "1234" },
+  {email: "me@me", password:"zL5e2atYuLA3KyM"}
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (usuarioValido) {
         errorDiv.style.display = "none";
 
-        // Cerrar modal
+        // Cerrar el fakin modal
         const modalElement = document.getElementById("loginModal");
         const modal = bootstrap.Modal.getInstance(modalElement);
         modal.hide();
@@ -31,13 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const userArea = document.getElementById("userArea");
         userArea.innerHTML = `
           <div class="d-flex gap-3 align-items-center">
-            <a href="panel.html" class="text-decoration-none" title="Panel de Control">
-              <i class="fa-solid fa-gauge-high fa-lg"></i>
+            <a class="text-decoration-none  text-white" title="Saldo">
+              <i class="bi bi-currency-dollar"></i> 10000
             </a>
-            <a href="perfil.html" class="text-decoration-none" title="Perfil">
+            <a href="perfil.html" class="text-decoration-none text-white" title="Perfil">
               <i class="fa-solid fa-user fa-lg"></i>
             </a>
-            <a href="#" id="logoutBtn" class="text-decoration-none" title="Cerrar Sesión">
+            <a href="#" id="logoutBtn" class="text-decoration-none text-white" title="Cerrar Sesión">
               <i class="fa-solid fa-right-from-bracket fa-lg"></i>
             </a>
           </div>
@@ -83,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //conectar con base de datos pero esta wea no tiene base de datos asi q no
 
     errorDiv.style.display = "none";
-    alert("Registro exitoso!");
+    alert("Registrado (No hay bases de datos asi q las credenciales nuevas no funcionaran :p)");
     const modalEl = document.getElementById("registerModal");
     const modal = bootstrap.Modal.getInstance(modalEl);
     modal.hide();
