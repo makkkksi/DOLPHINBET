@@ -5,7 +5,6 @@ function includeHTML(id, file) {
       .then(html => {
         document.getElementById(id).innerHTML = html;
       })
-      .catch(err => console.error(`Error cargando ${file}:`, err));
   }
   
   document.addEventListener("DOMContentLoaded", () => {

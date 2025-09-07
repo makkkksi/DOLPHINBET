@@ -268,19 +268,30 @@
   border: #073763ff;
 }
 .Juegos{
-  padding-top: 100px;
+  padding-top: 10px;
+  background-color: #073763ff;
 }
 .Juegos h1{
   font-weight: 900;
-  padding-bottom: 10px;
   padding-top: 10px;
+  color: white;
 }
 .Juegos p{
   font-weight: 500;
 }
 
-
-
+.img-juegos{
+      width: 100%;      
+      max-width: 200px;  
+      height: auto;
+      display: block;
+      margin: 0 auto;    
+      border-radius: 9px;
+}
+.Juegos a{ /*oooh que me costo esta weaaa ctmmmmmmmmmmmmmmmmmmmm*/
+  display: inline-block; 
+  text-decoration: none;
+}
 
 .card {
   border: none;
@@ -293,7 +304,6 @@
   object-fit: cover;
 }
 
-/* Título destacado */
 .card-title-custom {
   background: linear-gradient(135deg, #1565c0, #42a5f5);
   color: white;
