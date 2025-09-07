@@ -1,1 +1,2 @@
-test
+El login y la ruleta no son funcionales
+debido a q aun no sabemos como manejar bn el JS para almacenar datos y mostrarlos y etc...
