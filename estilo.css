@@ -300,7 +300,7 @@
 }
 
 .card-title-custom {
-  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  background-color: #073763ff; 
   color: white;
   padding: 10px 15px;
   border-radius: 10px;
