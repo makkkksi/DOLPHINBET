@@ -4,6 +4,8 @@ const usuarios = [
   {email: "me@me", password:"zL5e2atYuLA3KyM"}
 ];
 
+//visto en clases el login, conectado con el modal del bostrap :p
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("loginForm");
 
@@ -28,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const modal = bootstrap.Modal.getInstance(modalElement);
         modal.hide();
 
-        // Reemplazar el botón por íconos
+        // pomer iconos en el nav en el div de user area
         const userArea = document.getElementById("userArea");
         userArea.innerHTML = `
           <div class="d-flex gap-3 align-items-center">
@@ -44,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
         `;
 
-        // Evento de cerrar sesión
+        // Ecerrar
         document.getElementById("logoutBtn").addEventListener("click", function (e) {
           e.preventDefault();
           userArea.innerHTML = `
