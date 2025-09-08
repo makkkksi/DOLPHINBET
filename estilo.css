@@ -339,6 +339,111 @@
   font-size: 18px !important; ;
   font-weight: 600;  
 }
+
+/* Fondo general de la sección */
+/* Fondo general de la sección */
+.Juegos {
+  background: #a6b6a1; /* gris elegante */
+  padding: 60px 20px;
+  border-radius: 12px;
+  box-shadow: 0px 10px 30px rgba(0,0,0,0.05);
+  text-align: center;
+  border: 3px solid #0d6efd;
+}
+
+/* Título */
+.Juegos h1 {
+  font-family: "Playfair Display SC", serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #212529;
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.Juegos h1::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 4px;
+  background: linear-gradient(90deg, #0d6efd, #6c757d);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+/* Cards */
+.game-card {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.game-card img {
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.game-card:hover img {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+}
+
+/* Efecto glow en hover */
+.game-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(145deg, rgba(13,110,253,0.15), rgba(102,16,242,0.15));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+.game-card .card-body {
+  background: #fdfdfd;
+  padding: 1rem;
+}
+
+.game-card .card-title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.game-card:hover .card-title {
+  color: #0d6efd;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-card img {
+    height: 180px;
+  }
+  .Juegos h1 {
+    font-size: 1.7rem;
+  }
+}
+
+
+
 .circulo{
   width: 20px;
   height: 20px;
@@ -374,3 +479,73 @@ body.pagina-ruleta {
   background-color: rgb(8, 112, 15) !important;          
 }
 
+.perfilUsuario {
+  background-color: rgb(181, 180, 180);
+  border: 1px solid #ccc;  
+  width: 98%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  margin-left: 10px;
+}
+.contenedorDatos {
+  width: 98%;
+  margin: 0 auto;
+  display: flex;
+  gap: 2%; /* Espacio entre los divs, opcional */
+}
+
+.DatosPersonales {
+  border: 3px solid black;
+  width: 99%;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+.datos{
+  border: 3px solid black;
+  width: 99%;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+
+.fotografia {  
+  width: auto;
+  height: auto;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-left: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+.fondo-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 99%;
+  height: 99%;
+  object-fit: cover;
+  opacity: 0.5; /* Ajusta la transparencia */
+  z-index: 0;
+  pointer-events: none; /* Para que la imagen no bloquee los clicks */
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #0d6efd, #6610f2);
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #6610f2, #0d6efd);
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
