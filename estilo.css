@@ -340,3 +340,38 @@
   font-size: 18px !important; ;
   font-weight: 600;  
 }
+.circulo{
+  width: 20px;
+  height: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.circulo-rojo {
+  background: #e74c3c;
+}
+.circulo-verde {
+  background: #27ae60;
+}
+.circulo-amarillo {
+  background: #eaf34a;
+}
+body.pagina-ruleta {
+  background-color: #054208; 
+  color: white;
+}
+.tablaa-a {
+  position: absolute;    
+  top: 400px;            
+  right: 50px;           
+  width: 350px;
+  background-color: rgb(12, 74, 16) !important;          
+}
+.tabla-2 {
+  position: absolute;    
+  top: 400px;            
+  left: 50px;           
+  width: 350px;
+  background-color: rgb(8, 112, 15) !important;          
+}
+

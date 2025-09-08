@@ -5,53 +5,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DolphinBet - Transacciones</title>
-  <link rel="icon" type="image/svg+xml" href="IMG/ico.svg"> 
+  <link rel="icon" type="image/svg+xml" href="IMG/ico.svg">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="estilo.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 pagina-ruleta">
   <div id="navbar"></div>
 
   <main class="container my-5 flex-grow-1">
 
-<!-- body -->
-<div class="ruleta" id="ruleta">
-  <h1>EL JUEGO DE LA RULETA</h1>
-  <p>Nuestro simulador de ruleta reproduce con precisión la mecánica de un casino real con un modelo matemático que controla el juego en tu contra. Cada giro está diseñado para hacerte creer que tienes probabilidades de ganar, lo que significa que, estadísticamente, perderás dinero.
-El algoritmo está programado para mantener las probabilidades a favor de la casa, asegurando que la emoción del juego vaya de la mano con la certeza de que tus apuestas terminarán perdiéndose con el tiempo. Juega gratis desde casa y experimenta la ruleta tal como es: un juego de azar donde la casa siempre tiene la ventaja.</p>
-    <div class="foto_ruleta">
-      <img src="IMG/ruleta.png" alt="RULETAPENGE">
-    </div>
-<div class="butons">
-    <div class="boton_apostar_red"> <!--boton despegable del faking bostrap-->
-            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
-            Apostar al Rojo 
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">50$</a></li>
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">100$</a></li>
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">200$</a></li>
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">400$</a></li>
-          </ul>
-    </div>
+    <!-- body -->
 
+    <div class="ruleta" id="ruleta">
+      <h1>EL JUEGO DE LA RULETA</h1>
+      <p><br></p>
+      <div class="foto_ruleta">
+        <img src="IMG/rultea.png" alt="RULETAPENGE" class="img-fluid" style="max-width: 200px;">
+      </div>
+      <div class="MEsa text-center" style="margin-top : -20px; ">
+        <img src="IMG/ruleetaa.png" alt="MESAPENGE" class="img-fluid" style="max-width: 380px;">
+      </div>
+      <div class="container text-center ">
+        <div class="row align-items-start">
+          <div class="col">
+            <div class="circulo circulo-amarillo mx-auto"></div>
+            <h4>Recibiendo apuestas</h4>
+          </div>
+          <div class="col">
+            <div class=" circulo circulo-rojo mx-auto"></div>
 
-    <div class="boton_apostar_blue"> <!--boton despegable del faking bostrap-->
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
-            Apostar al Azul
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">50$</a></li>
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">100$</a></li>
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">200$</a></li>
-            <li><a class="dropdown-item" onclick="alert('Apuesta realizada')">400$</a></li>
-          </ul>
+            <h4>Esperando resultado</h4>
+          </div>
+          <div class="col">
+            <div class=" circulo circulo-verde mx-auto"></div>
+
+            <h4>Pagando</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <table class="table table-dark table-bordered border-primary tablaa-a">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Monto</th>
+              <th scope="col">resultado</th>
+              <th scope="col">saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Par</td>
+              <td>3500</td>
+              <td>Ganado</td>
+              <td>+7000</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Impar</td>
+              <td>4000</td>
+              <td>Perdido</td>
+              <td>-4000</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Impar</td>
+              <td>2000</td>
+              <td>Ganado</td>
+              <td>+4000</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Impar</td>
+              <td>1500</td>
+              <td>Perdido</td>
+              <td>-1500</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Par</td>
+              <td>8500</td>
+              <td>Perdido</td>
+              <td>-8500</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+      <div class="col-4">
+        <table class="table table-dark table-bordered border-primary tabla-2">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Numero</th>
+              <th scope="col">Color</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>22</td>
+              <td>Rojo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>17</td>
+              <td>Negro</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>29</td>
+              <td>Negro</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>3</td>
+              <td>Negro</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>36</td>
+              <td>Rojo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><br></p>
+      <div class="boton_apostar"> <!--boton despegable del faking bostrap-->
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+          id="botonoso">
+          Apostar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">50$</a></li>
+          <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">100$</a></li>
+          <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">200$</a></li>
+          <li><a class="dropdown-item" onclick="alert('Apuesta realziada')">400$</a></li>
+        </ul>
+      </div>
     </div>
-</div>
-
-</div>
 
   </main>
 
@@ -64,4 +160,5 @@ El algoritmo está programado para mantener las probabilidades a favor de la cas
   <script src="login.js"></script>
 
 </body>
+
 </html>
