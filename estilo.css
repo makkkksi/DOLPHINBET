@@ -258,9 +258,10 @@
   width: 400px;    
 }
 
-#botonoso{
-  background-color: #073763ff !important;
-  border: #073763ff;
+.butons{
+  display: flex;
+    justify-content: center; /* center, flex-start, flex-end, space-between, space-around */
+    gap: 10px; /* separación entre botones */
 }
 .Juegos{
   padding-top: 15px;
