@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <a class="text-decoration-none  text-white" title="Saldo">
               <i class="bi bi-currency-dollar"></i> 10000
             </a>
-            <a href="perfil.html" class="text-decoration-none text-white" title="Perfil">
+            <a href="perfil.php" class="text-decoration-none text-white" title="Perfil">
               <i class="fa-solid fa-user fa-lg"></i>
             </a>
             <a href="#" id="logoutBtn" class="text-decoration-none text-white" title="Cerrar Sesión">
