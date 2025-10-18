@@ -26,6 +26,7 @@ La mayoria de cosas son codigo del boostrap.
 <body>
 
   <?php include 'nav.html'; ?>
+  
 
 <!--carrusel copaio del bustrap-->
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -123,69 +124,64 @@ La mayoria de cosas son codigo del boostrap.
 <!---MODAL ACA PQ EN EL NAV QL NO CARGA POR EL FETCH NOSE Q WEAA-->
 <!--Modal del Login-->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-
-        <div class="modal-header">
-          <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5> 
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-
-        <div class="modal-body">
-          <p class="fst-italic">user: admin@admin.com pass:1234</p>
-          <form id="loginForm">
-            <div class="mb-3">
-              <label for="loginEmail" class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" id="loginEmail" required />
-            </div>
-
-            <div class="mb-3">
-              <label for="loginPassword" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="loginPassword" required />
-            </div>
-
-            <div id="loginError" class="text-danger mb-3" style="display: none;"></div>
-
-            <button type="submit" class="btn btn-primary">Ingresar</button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <!--Modal del Registro copiado del boostrap y visto en CLASES!!!!! -->
-  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="registerModalLabel">Registre</h5>
+        <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5> 
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
 
       <div class="modal-body">
+        <div id="loginError" class="text-danger mb-3" style="display: none;"></div>
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="loginEmail" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="loginEmail" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="loginPassword" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="loginPassword" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Ingresar</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <!--Modal del Registro copiado del boostrap y visto en CLASES!!!!! -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Registrarse</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+
+      <div class="modal-body">
+        <div id="registerError" class="text-danger mb-3" style="display: none;"></div>
         <form id="registerForm">
           <div class="mb-3">
             <label for="registerName" class="form-label">Nombre completo</label>
             <input type="text" class="form-control" id="registerName" required />
           </div>
-
           <div class="mb-3">
             <label for="registerEmail" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="registerEmail" required />
           </div>
-
           <div class="mb-3">
             <label for="registerPassword" class="form-label">Contraseña</label>
             <input type="password" class="form-control" id="registerPassword" required />
           </div>
-
           <div class="mb-3">
             <label for="registerConfirmPassword" class="form-label">Confirmar contraseña</label>
             <input type="password" class="form-control" id="registerConfirmPassword" required />
           </div>
-
-          <div id="registerError" class="text-danger mb-3" style="display: none;"></div>
 
           <button type="submit" class="btn btn-success w-100">Registrarse</button>
         </form>

@@ -1,95 +1,156 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const loginForm = document.getElementById("loginForm");
+  const registerForm = document.getElementById("registerForm");
+  const userArea = document.getElementById("userArea");
 
-const usuarios = [
-  { email: "admin@admin.com", password: "1234" },
-  {email: "me@me", password:"zL5e2atYuLA3KyM"}
-];
+  // --- 1. MANEJO DEL REGISTRO ---
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
+      e.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
 
-//visto en clases el login, conectado con el modal del bostrap :p
+      const name = document.getElementById("registerName").value;
+      const email = document.getElementById("registerEmail").value;
+      const pass = document.getElementById("registerPassword").value;
+      const confirmPass = document.getElementById("registerConfirmPassword").value;
+      const errorDiv = document.getElementById("registerError");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById("loginForm");
+      // Validación de contraseñas
+      if (pass !== confirmPass) {
+        errorDiv.textContent = "Las contraseñas no coinciden.";
+        errorDiv.style.display = "block";
+        return;
+      }
 
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
+      // Prepara los datos para enviar
+      const formData = new FormData();
+      formData.append("nombre", name);
+      formData.append("email", email);
+      formData.append("password", pass);
 
-      const email = document.getElementById("loginEmail").value.trim();
-      const password = document.getElementById("loginPassword").value;
-
-      const usuarioValido = usuarios.find(
-        (u) => u.email === email && u.password === password
-      );
-
-      const errorDiv = document.getElementById("loginError");
-
-      if (usuarioValido) {
-        errorDiv.style.display = "none";
-
-        // Cerrar el fakin modal
-        const modalElement = document.getElementById("loginModal");
-        const modal = bootstrap.Modal.getInstance(modalElement);
-        modal.hide();
-
-        // pomer iconos en el nav en el div de user area
-        const userArea = document.getElementById("userArea");
-        userArea.innerHTML = `
-          <div class="d-flex gap-3 align-items-center">
-            <a class="text-decoration-none  text-white" title="Saldo">
-              <i class="bi bi-currency-dollar"></i> 10000
-            </a>
-            <a href="perfil.php" class="text-decoration-none text-white" title="Perfil">
-              <i class="fa-solid fa-user fa-lg"></i>
-            </a>
-            <a href="#" id="logoutBtn" class="text-decoration-none text-white" title="Cerrar Sesión">
-              <i class="fa-solid fa-right-from-bracket fa-lg"></i>
-            </a>
-          </div>
-        `;
-
-        // Ecerrar
-        document.getElementById("logoutBtn").addEventListener("click", function (e) {
-          e.preventDefault();
-          userArea.innerHTML = `
-            <a href="#" class="btn btn-registrar" data-bs-toggle="modal" data-bs-target="#loginModal" id="btnIngresar">
-              <i class="fa-solid fa-circle-user icon"></i> INGRESAR
-            </a>
-          `;
+      try {
+        // Esta ruta (register.php) es correcta porque está en la misma carpeta que index.php
+        const response = await fetch("register.php", {
+          method: "POST",
+          body: formData,
         });
-      } else {
-        errorDiv.textContent = "Correo o contraseña incorrectos.";
+
+        const result = await response.json();
+
+        if (result.success) {
+          // Si el registro es exitoso, cerramos el modal de registro
+          const modal = bootstrap.Modal.getInstance(
+            document.getElementById("registerModal")
+          );
+          modal.hide();
+
+          // Abrimos el modal de login automáticamente
+          const loginModal = new bootstrap.Modal(
+            document.getElementById("loginModal")
+          );
+          loginModal.show();
+          
+          registerForm.reset();
+          errorDiv.style.display = "none";
+        } else {
+          // Muestra el error (ej: "Email ya registrado")
+          errorDiv.textContent = result.msg;
+          errorDiv.style.display = "block";
+        }
+      } catch (err) {
+        errorDiv.textContent = "Error de conexión. Inténtalo de nuevo.";
         errorDiv.style.display = "block";
       }
     });
   }
-});
 
+  // --- 2. MANEJO DEL LOGIN ---
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-document.addEventListener("DOMContentLoaded", () => {
-  const registerForm = document.getElementById("registerForm");
+      const email = document.getElementById("loginEmail").value;
+      const pass = document.getElementById("loginPassword").value;
+      const errorDiv = document.getElementById("loginError");
 
-  registerForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+      const formData = new FormData();
+      formData.append("email", email);
+      formData.append("password", pass);
 
-    const name = document.getElementById("registerName").value.trim();
-    const email = document.getElementById("registerEmail").value.trim();
-    const password = document.getElementById("registerPassword").value;
-    const confirmPassword = document.getElementById("registerConfirmPassword").value;
+      try {
+        // Esta ruta (login.php) es correcta
+        const response = await fetch("login.php", {
+          method: "POST",
+          body: formData,
+        });
 
-    const errorDiv = document.getElementById("registerError");
+        const result = await response.json();
 
-    if (password !== confirmPassword) {
-      errorDiv.textContent = "Las contraseñas no coinciden.";
-      errorDiv.style.display = "block";
-      return;
+        if (result.success) {
+          // Si el login es exitoso, cerramos el modal
+          const modal = bootstrap.Modal.getInstance(
+            document.getElementById("loginModal")
+          );
+          modal.hide();
+          loginForm.reset();
+          errorDiv.style.display = "none";
+
+          // Actualizamos la UI para mostrar al usuario
+          updateUserUI(result.nombre, result.saldo);
+        } else {
+          // Muestra el error (ej: "Contraseña incorrecta")
+          errorDiv.textContent = result.msg;
+          errorDiv.style.display = "block";
+        }
+      } catch (err) {
+        errorDiv.textContent = "Error de conexión. Inténtalo de nuevo.";
+        errorDiv.style.display = "block";
+      }
+    });
+  }
+
+  // --- 3. FUNCIÓN PARA ACTUALIZAR LA UI (NAVBAR) ---
+  function updateUserUI(nombre, saldo) {
+    // Formatea el saldo si es un número
+    let saldoFormateado = "N/A";
+    const saldoNum = parseFloat(saldo);
+    if (!isNaN(saldoNum)) {
+        saldoFormateado = new Intl.NumberFormat("es-CL", {
+          style: "currency",
+          currency: "CLP",
+          minimumFractionDigits: 0,
+        }).format(saldoNum);
     }
 
-    //conectar con base de datos pero esta wea no tiene base de datos asi q no
+    userArea.innerHTML = `
+      <span class="navbar-text me-3 text-white">
+        ¡Hola, <strong>${nombre}</strong>!
+      </span>
+      <span class="navbar-text me-3 text-white">
+        Saldo: <strong>${saldoFormateado}</strong>
+      </span>
+      <button id="logoutButton" class="btn btn-outline-warning">Cerrar Sesión</button>
+    `;
 
-    errorDiv.style.display = "none";
-    alert("Registrado (No hay bases de datos asi q las credenciales nuevas no funcionaran :p)");
-    const modalEl = document.getElementById("registerModal");
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    modal.hide();
-  });
+    // Añadimos el listener al nuevo botón de logout
+    document
+      .getElementById("logoutButton")
+      .addEventListener("click", handleLogout);
+  }
+
+  // --- 4. MANEJO DEL LOGOUT ---
+  async function handleLogout() {
+    try {
+      const response = await fetch("logout.php", {
+        method: "POST",
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        // Recargamos la página para resetear el estado
+        window.location.reload();
+      }
+    } catch (err) {
+      console.error("Error al cerrar sesión:", err);
+    }
+  }
 });
-
