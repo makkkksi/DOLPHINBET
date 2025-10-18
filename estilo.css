@@ -5,13 +5,14 @@
   font-style: normal !important;
    padding-top: 67px; /* ajusta según la altura real de tu navbar */
   }
+/* 17-10-2025     background-color: #073763ff;
 
-
+*/
 
 .navbar {
     padding-top: 0.2rem;   
     padding-bottom: 0.3rem; 
-    background-color: #073763ff;
+    background-color: rgb(211, 211, 211);
 
   }
 .navbar-brand img {
@@ -26,7 +27,7 @@
   
 .nav-link {
   display: inline-block;          
-  color: white !important;
+  color: rgb(255, 255, 255) !important;
   font-weight: 600;
   font-size: 16px;                
   text-transform: uppercase;
@@ -285,7 +286,7 @@
 
 .img-juegos{
       width: 100%;      
-      max-width: 200px;  
+      max-width: 300px;  
       height: auto;
       display: block;
       margin: 0 auto;    
