@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DolphinBet - Casino Online</title>
+    <link rel="icon" type="image/svg+xml" href="IMG/ico.svg"> 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="estilo.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <?php include 'nav.html'; ?>
+
+
+<section class="container my-5">
+  <div class="row">
+    <div class="col-xl-11 col-lg-11 col-md-12 mx-auto">
+
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-book me-2"></i>Reglas del Juego</h5>
+          <p class="card-text">La ruleta se juega con una rueda del 0 al 36. Los jugadores apuestan antes de que el crupier lance la bola. Cuando la bola se detiene en un número, se pagan las apuestas ganadoras.</p>
+        </div>
+      </div>
+
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-coins me-2"></i>Tipos de Apuesta</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pleno  Apuesta a un número (35:1)</li>
+            <li class="list-group-item">Color  Rojo, Negro o Verde (1:1 / especial para el 0)</li>
+            <li class="list-group-item">Par/Impar (1:1)</li>
+            <li class="list-group-item">Docenas 12 números (2:1)</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-chart-pie me-2"></i>Probabilidades y Pagos</h5>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Apuesta</th>
+                  <th>Probabilidad</th>
+                  <th>Pago</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Pleno</td><td>2.7%</td><td>35:1</td></tr>
+                <tr><td>Color</td><td>48.6%</td><td>1:1</td></tr>
+                <tr><td>Docena</td><td>32.4%</td><td>2:1</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title card-title-custom"><i class="fas fa-shield-heart me-2"></i>Consejos de Juego Responsable</h5>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">No establescas un presupuesto antes de jugar.</li>
+            <li class="list-group-item">Persigue perdidas</li>
+            <li class="list-group-item">Juega por diversión, si es que quieres perder tu dinero.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card mb-4 shadow-lg">
+        <div class="card-body">
+             <h5 class="card-title card-title-custom"><i class="bi bi-exclamation-diamond-fill"></i> Recuerda</h5>
+          <img class="d-block mx-auto" src="IMG/minero.jpg" alt="">
+        </div>  
+        </div>
+
+    </div>
+  </div>
+    <div class="text-center my-4">
+        <a href="ruleta.html" class="btn btn-primary btn-lg px-5">
+          🎲 Jugar Ahora
+        </a>
+      </div>
+</section>
+
+<!--FOOTER-->
+<?php include 'footer.html'; ?>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="login.js"></script>
+
+
+ 
+    
+</body>
