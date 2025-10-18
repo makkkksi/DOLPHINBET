@@ -82,15 +82,15 @@ La mayoria de cosas son codigo del boostrap.
     <div class="row text-center">
       <div class="col-md-4 mb-4">
         <a href="id.html">
-        <img src="/IMG/poker_index.png" alt="" class="img-juegos"></a>
+        <img src="IMG/poker_index.png" alt="" class="img-juegos"></a>
       </div>
       <div class="col-md-4 mb-4">
         <a href="id.html">
-        <img src="/IMG/cohete.png" alt="" class="img-juegos"></a>
+        <img src="IMG/cohete.png" alt="" class="img-juegos"></a>
       </div>
       <div class="col-md-4 mb-4">
         <a href="id.html">
-        <img src="/IMG/pollo.png" alt="" class="img-juegos"></a>
+        <img src="IMG/pollo.png" alt="" class="img-juegos"></a>
       </div>
     </div>
   </div>
