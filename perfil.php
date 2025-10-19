@@ -107,7 +107,7 @@ $saldo_formateado = number_format($saldo_usuario, 0, ',', '.');
               <h4>Volver al Casino</h4>
               <p>Haz clic en la imagen para volver a la página principal.</p>
               <a href="index.php">
-                <img src="IMG/iconruleta.png" alt="Volver al casino" class="casino-return-img">
+                <img src="IMG/back.webp" alt="Volver al casino" class="casino-return-img">
               </a>
             </div>
 

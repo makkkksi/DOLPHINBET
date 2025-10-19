@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (result.success) {
-        // Si la sesión ya existe, actualiza la UI
         updateUserUI(result.nombre, result.saldo);
       }
     } catch (err) {
@@ -20,59 +19,80 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Llama a la función al cargar el DOM en CUALQUIER página
   if (userArea) {
     checkLoginStatus();
   }
 
-  // --- 1. MANEJO DEL REGISTRO ---
+  // --- 1. MANEJO DEL REGISTRO (MODIFICADO) ---
   if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
-      e.preventDefault(); // Evita que el formulario se envíe
+      e.preventDefault();
 
-      // --- MODIFICADO: Obtenemos y limpiamos (trim) los valores ---
+      // --- Obtenemos todos los valores ---
       const name = document.getElementById("registerName").value.trim();
       const email = document.getElementById("registerEmail").value.trim();
+      // --- NUEVO CAMPO ---
+      const dob = document.getElementById("registerDOB").value;
       const pass = document.getElementById("registerPassword").value;
       const confirmPass = document.getElementById(
         "registerConfirmPassword"
       ).value;
       const errorDiv = document.getElementById("registerError");
 
-      // Limpiar errores previos
       errorDiv.textContent = "";
       errorDiv.style.display = "none";
 
-      // --- NUEVA VALIDACIÓN 1: NOMBRE COMPLETO (Debe tener un espacio) ---
+      // --- VALIDACIÓN 1: NOMBRE COMPLETO ---
       if (name.length === 0) {
         errorDiv.textContent = "Por favor, ingresa tu nombre completo.";
         errorDiv.style.display = "block";
-        return; // Detiene el envío
+        return;
       }
       if (name.indexOf(" ") === -1) {
         errorDiv.textContent =
           "Por favor, ingresa tu nombre y al menos un apellido.";
         errorDiv.style.display = "block";
-        return; // Detiene el envío
+        return;
       }
 
-      // --- NUEVA VALIDACIÓN 2: EMAIL VÁLIDO (con .com o similar) ---
-      // Esta es una expresión regular (RegEx) que busca el formato: texto@texto.texto
+      // --- VALIDACIÓN 2: EMAIL VÁLIDO ---
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (email.length === 0) {
         errorDiv.textContent = "Por favor, ingresa tu correo electrónico.";
         errorDiv.style.display = "block";
-        return; // Detiene el envío
+        return;
       }
       if (!emailRegex.test(email)) {
         errorDiv.textContent =
           "Por favor, ingresa un correo electrónico válido (ej: usuario@dominio.com).";
         errorDiv.style.display = "block";
+        return;
+      }
+
+      // --- NUEVA VALIDACIÓN 3: MAYORÍA DE EDAD ---
+      if (dob.length === 0) {
+        errorDiv.textContent = "Por favor, ingresa tu fecha de nacimiento.";
+        errorDiv.style.display = "block";
+        return;
+      }
+
+      const today = new Date();
+      const birthDate = new Date(dob);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDifference = today.getMonth() - birthDate.getMonth();
+      
+      if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+        age--; // Aún no ha cumplido años este año
+      }
+
+      if (age < 18) {
+        errorDiv.textContent = "Anda a jugar Roblox pendejo.";
+        errorDiv.style.display = "block";
         return; // Detiene el envío
       }
-      // --- FIN DE NUEVAS VALIDACIONES ---
+      // --- FIN DE NUEVA VALIDACIÓN ---
 
-      // Validación de contraseñas (ya existente)
+      // Validación de contraseñas
       if (pass !== confirmPass) {
         errorDiv.textContent = "Las contraseñas no coinciden.";
         errorDiv.style.display = "block";
@@ -83,6 +103,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = new FormData();
       formData.append("nombre", name);
       formData.append("email", email);
+      // --- NUEVO DATO ENVIADO ---
+      formData.append("fecha_nacimiento", dob); 
       formData.append("password", pass);
 
       try {
@@ -182,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <i class="fas fa-user"></i>
       </a>
 
-      <button id="logoutButton" class="btn btn-outline-warning btn-sm" style="white-space: nowrap;">Cerrar Sesión</button>
+      <button id="logoutButton" class="btn btn-outline-success btn-sm" style="white-space: nowrap;">Cerrar Sesión</button>
     `;
 
     document

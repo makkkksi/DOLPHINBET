@@ -2,10 +2,20 @@
 require 'api/v1/conexion.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    // --- CAMPOS RECIBIDOS ---
     $nombre_completo = $_POST['nombre'] ?? '';
-    $email = $_POST['email'] ?? ''; // En tu BD será 'username'
+    $email = $_POST['email'] ?? '';
+    $fecha_nacimiento = $_POST['fecha_nacimiento'] ?? ''; 
     $password = $_POST['password'] ?? '';
 
+    // --- VALIDACIÓN CORREGIDA ---
+    // Esta validación ahora comprueba correctamente todos los campos.
+    if (empty($nombre_completo) || empty($email) || empty($password) || empty($fecha_nacimiento)) {
+        echo json_encode(["success" => false, "msg" => "Todos los campos son obligatorios. (Error desde PHP)"]);
+        exit;
+    }
+    
     $connObj = new Conexion();
     $conn = $connObj->getConnection();
 
@@ -29,16 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // --- PASO 3: Insertar en 'persona' ---
-        $stmt_persona = $conn->prepare("INSERT INTO persona (fecha_nacimiento, activo) VALUES (CURDATE(), 1)");
+        $stmt_persona = $conn->prepare("INSERT INTO persona (fecha_nacimiento, activo) VALUES (?, 1)");
+        $stmt_persona->bind_param("s", $fecha_nacimiento);
         $stmt_persona->execute();
         $persona_id = $conn->insert_id;
         $stmt_persona->close();
 
-        // --- PASO 4: Insertar en 'documento_identidad' (MODIFICADO) ---
-        
-        // ¡CAMBIO! Guardamos el nombre completo en 'nombres'
+        // --- PASO 4: Insertar en 'documento_identidad' ---
         $nombres = $nombre_completo; 
-        // ¡CAMBIO! Dejamos los apellidos vacíos en lugar de 'Usuario'
         $apellido_paterno_vacio = ''; 
         $apellido_materno_vacio = '';
         
@@ -47,9 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)"
         );
         $valor_doc = 'RUT-' . $email;
-        $id_relleno = 1; // Usamos '1' para orden_apellido, nacionalidad, etc.
+        $id_relleno = 1; 
         
-        // ¡CAMBIO! Pasamos los valores modificados
         $stmt_doc->bind_param("sisssiiii", $valor_doc, $persona_id, $nombres, $apellido_paterno_vacio, $apellido_materno_vacio, $id_relleno, $id_relleno, $id_relleno, $id_relleno);
         $stmt_doc->execute();
         $stmt_doc->close();

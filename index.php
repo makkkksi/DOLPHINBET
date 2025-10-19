@@ -34,44 +34,58 @@ La mayoria de cosas son codigo del boostrap.
     <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true"></button>
     <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1"></button>
     <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2"></button>
+    <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="3"></button>
     </div>
   <div class="carousel-inner">
 
     <div class="carousel-item active" data-bs-interval="7000">
       <img src="IMG/Wallpaper_ruleta.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h2>BIENVENIDO A DOLPHINBET</h2>
+        <h1>BIENVENIDO A DOLPHINBET</h1>
         <p>Apuesta como nunca.  Pierde como siempre</p>
-<button 
-  class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2"
-  data-bs-toggle="modal" 
-  data-bs-target="#registerModal">
-  JUGAR
-</button>
+    <button 
+      class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2"
+      data-bs-toggle="modal" 
+      data-bs-target="#loginModal">
+      JUGAR
+      </button>
       </div>
-
+      
+    </div>
+        <div class="carousel-item" data-bs-interval="7000">
+      <img src="IMG/plata3.webp" class="d-block w-100" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h1>¡100% BONUS EN EL PRIMER DEPOSITO!</h1>
+        <p>+ 1 GIRO GRATIS</p>
+        <button onclick="window.location.href='transaccion.php'" class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
+          Depositar
+        </button>
+      </div>
+      
+      
     </div>
     <div class="carousel-item" data-bs-interval="7000">
       <img src="IMG/juegos.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h2>¡CONOCE NUESTROS JUEGOS!</h2>
+        <h1>¡CONOCE NUESTROS JUEGOS!</h1>
         <p>Visita nuestros juegos mas jugados</p>
-         <button onclick="window.location.href='juegos.html'" class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
+         <button onclick="window.location.href='index.php#Juegos'" class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
           Juegos
         </button>
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="7000">
-      <img src="IMG/plata3.webp" class="d-block w-100" alt="...">
+      <img src="IMG/cards.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h2>PIERDE COMO NUNCA</h2>
+        <h1>PIERDE COMO NUNCA</h1>
         <p>Infórmate de nuestras bases del juego, ¡aunque igualmente perderás!</p>
-        <button onclick="window.location.href='info.html'" class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
+        <button onclick="window.location.href='info.php'" class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
           INFORMACIÓN
         </button>
       </div>
-      
     </div>
+
+
   </div>
 </div>
 <!--carrusel //-->
@@ -172,6 +186,11 @@ La mayoria de cosas son codigo del boostrap.
           <div class="mb-3">
             <label for="registerEmail" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="registerEmail" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="registerDOB" class="form-label">Fecha de Nacimiento</label>
+            <input type="date" class="form-control" id="registerDOB" required />
           </div>
           <div class="mb-3">
             <label for="registerPassword" class="form-label">Contraseña</label>
