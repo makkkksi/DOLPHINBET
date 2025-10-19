@@ -3,18 +3,76 @@ document.addEventListener("DOMContentLoaded", () => {
   const registerForm = document.getElementById("registerForm");
   const userArea = document.getElementById("userArea");
 
+  // --- VERIFICAR SESIÓN AL CARGAR LA PÁGINA ---
+  async function checkLoginStatus() {
+    try {
+      const response = await fetch("check_session.php", {
+        method: "GET",
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        // Si la sesión ya existe, actualiza la UI
+        updateUserUI(result.nombre, result.saldo);
+      }
+    } catch (err) {
+      console.error("Error al verificar la sesión:", err);
+    }
+  }
+
+  // Llama a la función al cargar el DOM en CUALQUIER página
+  if (userArea) {
+    checkLoginStatus();
+  }
+
   // --- 1. MANEJO DEL REGISTRO ---
   if (registerForm) {
     registerForm.addEventListener("submit", async (e) => {
-      e.preventDefault(); // Evita que el formulario se envíe de la forma tradicional
+      e.preventDefault(); // Evita que el formulario se envíe
 
-      const name = document.getElementById("registerName").value;
-      const email = document.getElementById("registerEmail").value;
+      // --- MODIFICADO: Obtenemos y limpiamos (trim) los valores ---
+      const name = document.getElementById("registerName").value.trim();
+      const email = document.getElementById("registerEmail").value.trim();
       const pass = document.getElementById("registerPassword").value;
-      const confirmPass = document.getElementById("registerConfirmPassword").value;
+      const confirmPass = document.getElementById(
+        "registerConfirmPassword"
+      ).value;
       const errorDiv = document.getElementById("registerError");
 
-      // Validación de contraseñas
+      // Limpiar errores previos
+      errorDiv.textContent = "";
+      errorDiv.style.display = "none";
+
+      // --- NUEVA VALIDACIÓN 1: NOMBRE COMPLETO (Debe tener un espacio) ---
+      if (name.length === 0) {
+        errorDiv.textContent = "Por favor, ingresa tu nombre completo.";
+        errorDiv.style.display = "block";
+        return; // Detiene el envío
+      }
+      if (name.indexOf(" ") === -1) {
+        errorDiv.textContent =
+          "Por favor, ingresa tu nombre y al menos un apellido.";
+        errorDiv.style.display = "block";
+        return; // Detiene el envío
+      }
+
+      // --- NUEVA VALIDACIÓN 2: EMAIL VÁLIDO (con .com o similar) ---
+      // Esta es una expresión regular (RegEx) que busca el formato: texto@texto.texto
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email.length === 0) {
+        errorDiv.textContent = "Por favor, ingresa tu correo electrónico.";
+        errorDiv.style.display = "block";
+        return; // Detiene el envío
+      }
+      if (!emailRegex.test(email)) {
+        errorDiv.textContent =
+          "Por favor, ingresa un correo electrónico válido (ej: usuario@dominio.com).";
+        errorDiv.style.display = "block";
+        return; // Detiene el envío
+      }
+      // --- FIN DE NUEVAS VALIDACIONES ---
+
+      // Validación de contraseñas (ya existente)
       if (pass !== confirmPass) {
         errorDiv.textContent = "Las contraseñas no coinciden.";
         errorDiv.style.display = "block";
@@ -28,7 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append("password", pass);
 
       try {
-        // Esta ruta (register.php) es correcta porque está en la misma carpeta que index.php
         const response = await fetch("register.php", {
           method: "POST",
           body: formData,
@@ -37,22 +94,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json();
 
         if (result.success) {
-          // Si el registro es exitoso, cerramos el modal de registro
           const modal = bootstrap.Modal.getInstance(
             document.getElementById("registerModal")
           );
           modal.hide();
-
-          // Abrimos el modal de login automáticamente
           const loginModal = new bootstrap.Modal(
             document.getElementById("loginModal")
           );
           loginModal.show();
-          
           registerForm.reset();
           errorDiv.style.display = "none";
         } else {
-          // Muestra el error (ej: "Email ya registrado")
           errorDiv.textContent = result.msg;
           errorDiv.style.display = "block";
         }
@@ -77,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
       formData.append("password", pass);
 
       try {
-        // Esta ruta (login.php) es correcta
         const response = await fetch("login.php", {
           method: "POST",
           body: formData,
@@ -86,7 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const result = await response.json();
 
         if (result.success) {
-          // Si el login es exitoso, cerramos el modal
           const modal = bootstrap.Modal.getInstance(
             document.getElementById("loginModal")
           );
@@ -94,10 +144,8 @@ document.addEventListener("DOMContentLoaded", () => {
           loginForm.reset();
           errorDiv.style.display = "none";
 
-          // Actualizamos la UI para mostrar al usuario
           updateUserUI(result.nombre, result.saldo);
         } else {
-          // Muestra el error (ej: "Contraseña incorrecta")
           errorDiv.textContent = result.msg;
           errorDiv.style.display = "block";
         }
@@ -110,28 +158,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- 3. FUNCIÓN PARA ACTUALIZAR LA UI (NAVBAR) ---
   function updateUserUI(nombre, saldo) {
-    // Formatea el saldo si es un número
     let saldoFormateado = "N/A";
     const saldoNum = parseFloat(saldo);
     if (!isNaN(saldoNum)) {
-        saldoFormateado = new Intl.NumberFormat("es-CL", {
-          style: "currency",
-          currency: "CLP",
-          minimumFractionDigits: 0,
-        }).format(saldoNum);
+      saldoFormateado = new Intl.NumberFormat("es-CL", {
+        style: "currency",
+        currency: "CLP",
+        minimumFractionDigits: 0,
+      }).format(saldoNum);
     }
 
+    userArea.className = "d-flex align-items-center";
+
     userArea.innerHTML = `
-      <span class="navbar-text me-3 text-white">
+      <span class="navbar-text me-2 text-white" style="white-space: nowrap;">
         ¡Hola, <strong>${nombre}</strong>!
       </span>
-      <span class="navbar-text me-3 text-white">
+      <span class="navbar-text me-2 text-white" style="white-space: nowrap;">
         Saldo: <strong>${saldoFormateado}</strong>
       </span>
-      <button id="logoutButton" class="btn btn-outline-warning">Cerrar Sesión</button>
+      
+      <a href="perfil.php" class="btn btn-outline-light btn-sm me-2" title="Mi Perfil">
+        <i class="fas fa-user"></i>
+      </a>
+
+      <button id="logoutButton" class="btn btn-outline-warning btn-sm" style="white-space: nowrap;">Cerrar Sesión</button>
     `;
 
-    // Añadimos el listener al nuevo botón de logout
     document
       .getElementById("logoutButton")
       .addEventListener("click", handleLogout);
@@ -146,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await response.json();
 
       if (result.success) {
-        // Recargamos la página para resetear el estado
         window.location.reload();
       }
     } catch (err) {

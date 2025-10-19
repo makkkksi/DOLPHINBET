@@ -1,10 +1,22 @@
+<?php
+session_start();
+
+// 1. BLOQUE DE PROTECCIÓN (MODIFICADO)
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION['user_id'])) {
+    // Si no hay sesión, redirigir a index.php CON UN MENSAJE DE ERROR
+    header('Location: index.php?error=not_logged_in');
+    exit; // Detener la ejecución del script
+}
+// Si la sesión existe, el script continúa y muestra la página.
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DolphinBet - Transacciones</title>
+  <title>DolphinBet - Transacciones</title> 
   <link rel="icon" type="image/svg+xml" href="IMG/ico.svg">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,14 +24,12 @@
 </head>
 
 <body class="d-flex flex-column min-vh-100 pagina-ruleta">
-  <div id="navbar"></div>
+  <?php include 'nav.html'; ?>
 
   <main class="container my-5 flex-grow-1">
 
-    <!-- body -->
-
     <div class="ruleta" id="ruleta">
-      <h1 class="text-center">EL JUEGO DE LA RULETA</h1>
+      <h1 class="text-center">EL JUEGO DE LA RULETA</h1> 
       <p><br></p>
       <div class="foto_ruleta">
         <img src="IMG/rultea.png" alt="RULETAPENGE" class="img-fluid" style="max-width: 200px;">
@@ -136,8 +146,7 @@
       </div>
       <p><br></p>
 <div class="butons">
-    <div class="boton_apostar_red"> <!--boton despegable del faking bostrap-->
-            <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
+    <div class="boton_apostar_red"> <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
             Apostar al Rojo 
           </button>
           <ul class="dropdown-menu">
@@ -149,8 +158,7 @@
     </div>
 
 
-    <div class="boton_apostar_blue"> <!--boton despegable del faking bostrap-->
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
+    <div class="boton_apostar_blue"> <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="botonoso">
             Apostar al Azul
           </button>
           <ul class="dropdown-menu">
@@ -165,13 +173,12 @@
 
   </main>
 
-  <!-- Footer -->
-  <div id="footer"></div>
+  <?php include 'footer.html'; ?>
 
-  <!-- scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="nav.foot.js"></script>
-  <script src="login.js"></script>
+  
+  <script src="login.js"></script> 
 
 </body>
 

@@ -4,19 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DolphinBet - Casino Online</title>
-    <link rel="icon" type="image/svg+xml" href="IMG/ico.svg"> 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="IMG/ico.svg"> 
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-
-<link rel="stylesheet" href="estilo.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilo.css">
 </head>
 <!--README
 LEER
@@ -26,6 +23,8 @@ La mayoria de cosas son codigo del boostrap.
 <body>
 
   <?php include 'nav.html'; ?>
+  
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
   
 
 <!--carrusel copaio del bustrap-->
@@ -39,7 +38,7 @@ La mayoria de cosas son codigo del boostrap.
   <div class="carousel-inner">
 
     <div class="carousel-item active" data-bs-interval="7000">
-      <img src="IMG/Wallpaper_ruleta.jpg" class="d-block w-100" alt="...">
+      <img src="IMG/Wallpaper_ruleta.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h2>BIENVENIDO A DOLPHINBET</h2>
         <p>Apuesta como nunca.  Pierde como siempre</p>
@@ -53,7 +52,7 @@ La mayoria de cosas son codigo del boostrap.
 
     </div>
     <div class="carousel-item" data-bs-interval="7000">
-      <img src="IMG/juegos.jpg" class="d-block w-100" alt="...">
+      <img src="IMG/juegos.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h2>¡CONOCE NUESTROS JUEGOS!</h2>
         <p>Visita nuestros juegos mas jugados</p>
@@ -63,7 +62,7 @@ La mayoria de cosas son codigo del boostrap.
       </div>
     </div>
     <div class="carousel-item" data-bs-interval="7000">
-      <img src="IMG/plata3.jpg" class="d-block w-100" alt="...">
+      <img src="IMG/plata3.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
         <h2>PIERDE COMO NUNCA</h2>
         <p>Infórmate de nuestras bases del juego, ¡aunque igualmente perderás!</p>
@@ -196,6 +195,17 @@ La mayoria de cosas son codigo del boostrap.
 
 
 <script src="login.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        if (urlParams.get('error') === 'not_logged_in') {
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        }
+    });
+  </script>
 
 </body>
 </html>

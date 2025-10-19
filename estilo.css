@@ -13,6 +13,7 @@
     padding-top: 0.2rem;   
     padding-bottom: 0.3rem; 
     background-color: rgb(211, 211, 211);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 
   }
 .navbar-brand img {
@@ -488,4 +489,97 @@ body.pagina-ruleta {
   background: linear-gradient(90deg, #6610f2, #0d6efd);
   transform: scale(1.05);
   box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+}
+
+
+
+/* =========================================
+--- ESTILOS ADICIONALES PÁGINA DE PERFIL ---
+=========================================
+*/
+
+/* Fondo sutil para la página de perfil */
+body.perfil-page {
+  background-color: #f4f7f6; 
+}
+
+/* Tarjeta principal que contiene todo */
+.card-profile {
+  border: none;
+  border-radius: 0.75rem;
+  background-color: #ffffff; /* Fondo blanco limpio */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra suave */
+}
+
+.card-profile .card-header {
+  background-color: #000000; /* Fondo oscuro (como el footer) */
+  border-bottom: 0;
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  padding: 0;
+}
+
+/* Estilo de las pestañas (tabs) */
+.profile-tabs .nav-link {
+  color: #5900ff00; /* Color grisáceo para tabs inactivas */
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  border: none;
+  /* Redondeo solo para la primera y última */
+  border-top-left-radius: 0.75rem; 
+  border-top-right-radius: 0.75rem;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.profile-tabs .nav-link.active {
+  color: #ffffff00; /* Color oscuro para texto de tab activa */
+  background-color: #073763ff; /* Fondo blanco para tab activa */
+  border: none;
+}
+
+.profile-tabs .nav-link:hover:not(.active) {
+  color: #ffffff; /* Color blanco al pasar el mouse */
+}
+
+/* Contenido dentro de la tarjeta */
+.card-profile .card-body {
+  padding: 2.5rem; /* Más espacio interior */
+}
+
+/* Contenido de cada pestaña */
+.profile-tab-content h4 {
+  color: #073763ff; /* Color azul (lo vi en tu CSS) */
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.75rem;
+}
+
+
+.form-control[readonly] {
+  background-color: #e9ecef; /* Fondo gris claro */
+  opacity: 1;
+  border: 1px solid #ced4da;
+  cursor: not-allowed;
+  font-weight: 500;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #495057;
+}
+
+/* Estilo para la imagen del casino en la pestaña 'Volver' */
+.casino-return-img {
+  max-width: 200px; /* Tamaño controlado */
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.casino-return-img:hover {
+  opacity: 1;
 }
