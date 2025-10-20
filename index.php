@@ -55,7 +55,7 @@ La mayoria de cosas son codigo del boostrap.
         <div class="carousel-item" data-bs-interval="7000">
       <img src="IMG/plata3.webp" class="d-block w-100" alt="...">
       <div class="carousel-caption d-none d-md-block">
-        <h1>¡100% BONUS EN EL PRIMER DEPOSITO!</h1>
+        <h1>¡2,3% BONUS EN EL PRIMER DEPOSITO!</h1> 
         <p>+ 1 GIRO GRATIS</p>
         <button onclick="window.location.href='transaccion.php'" class="btn border border-white text-white bg-transparent fw-bold rounded px-4 py-2">
           Depositar
@@ -96,15 +96,15 @@ La mayoria de cosas son codigo del boostrap.
     <div class="row text-center">
       <div class="col-md-4 mb-4">
         <a href="id.html">
-        <img src="IMG/poker_index.png" alt="" class="img-juegos"></a>
+        <img src="IMG/pepito.png" alt="" class="img-juegos"></a>
       </div>
       <div class="col-md-4 mb-4">
         <a href="id.html">
         <img src="IMG/cohete.png" alt="" class="img-juegos"></a>
       </div>
       <div class="col-md-4 mb-4">
-        <a href="id.html">
-        <img src="IMG/pollo.png" alt="" class="img-juegos"></a>
+        <a href="pollo.php">
+        <img src="IMG/pollo.png" alt="juego del pollo" class="img-juegos"></a>
       </div>
     </div>
   </div>
