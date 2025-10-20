@@ -29,7 +29,7 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DolphinBet - Juego del Pollo</title>
+  <title>DolphinBet - Pollo</title>
   <link rel="icon" type="image/svg+xml" href="IMG/ico.svg">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -57,18 +57,14 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
     .lane:last-child { border-bottom: none; }
     .lane.safe { background-color: #28a745; }
 
-#chicken {
-      width: 70px; 
-      height: 70px;
+    #chicken {
+      width: 75px; 
+      height: 75px;
       object-fit: contain;
       position: absolute;
-      
-      /* --- INICIO DE LA CORRECCIÓN --- */
-      left: 50%; /* 1. Lo mueve al centro del tablero */
-      transform: translateX(-50%); /* 2. Lo corre hacia la izquierda la mitad de su propio tamaño */
-      /* --- FIN DE LA CORRECCIÓN --- */
-
-      top: 360px;
+      left: 50%; /* Centrado */
+      transform: translateX(-50%); /* Centrado */
+      top: 360px; /* Posición inicial (calculada por JS) */
       transition: top 0.3s ease-in-out;
       z-index: 10;
     }
@@ -85,7 +81,7 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
 
         <div class="card shadow-lg card-profile">
           <div class="card-header">
-            <h4 class="mb-0 text-center fw-bold">Juego del Pollo 🐔</h4>
+            <h4 class="mb-0 text-center fw-bold text-white">POLLO</h4>
           </div>
           <div class="card-body">
             
@@ -130,6 +126,9 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
   <script>
     document.addEventListener("DOMContentLoaded", function() {
     
+      const jumpSound = new Audio('audio/salto.mp3');
+      const loseSound = new Audio('audio/muerte.mp3');
+    
       const startForm = document.getElementById('startForm');
       const gameControls = document.getElementById('gameControls');
       const advanceBtn = document.getElementById('advanceBtn');
@@ -146,7 +145,7 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
         return; 
       }
 
-      // --- FUNCIÓN PRINCIPAL DE API ---
+      // --- FUNCIÓN PRINCIPAL DE API (MODIFICADA) ---
       async function handleGameAction(action, monto = 0) {
         advanceBtn.disabled = true;
         cashoutBtn.disabled = true;
@@ -172,9 +171,27 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
           gameData = result.gameData;
 
           if (!gameInProgress) {
-            alert(result.msg);
-            window.location.reload();
+            // --- INICIO DE LA CORRECCIÓN DE SONIDO ---
+            if (result.msg.includes("atropellado")) {
+                // 1. Toca el sonido
+                loseSound.play();
+                // 2. Espera a que termine
+                loseSound.onended = function() {
+                    // 3. Muestra la alerta y recarga
+                    alert(result.msg);
+                    window.location.reload();
+                };
+            } else {
+                // Si ganó (o se retiró), no hay sonido, solo alerta
+                alert(result.msg);
+                window.location.reload();
+            }
+            // --- FIN DE LA CORRECCIÓN ---
+
           } else {
+            if (action === 'advance') {
+                jumpSound.play();
+            }
             updateUI();
           }
 
@@ -182,15 +199,11 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
           alert('Error: ' + err.message);
           if(action !== 'start' && action !== 'advance') window.location.reload(); 
         } finally {
-          // Reactivar botones (la lógica de UI se encarga si llegó al final)
-          if(gameData.lane < 5) {
-             advanceBtn.disabled = false;
-          }
-          cashoutBtn.disabled = false;
+          // Esta lógica se moverá a updateUI para evitar conflictos
         }
       }
 
-      // --- FUNCIÓN PARA ACTUALIZAR LA INTERFAZ (MODIFICADA) ---
+      // --- FUNCIÓN PARA ACTUALIZAR LA INTERFAZ ---
       function updateUI() {
         if (gameInProgress) {
           startForm.classList.add('d-none');
@@ -200,38 +213,28 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
           const potentialWinnings = gameData.winnings;
           const nextRisk = 10 + (currentLane * 5); 
 
-          // Mover el pollo
-          // carril 0 = (5-0)*70 + 10 = 360px
-          // carril 5 = (5-5)*70 + 10 = 10px (el último)
           const topPosition = (5 - currentLane) * 70 + 10;
           chicken.style.top = `${topPosition}px`;
           
           cashoutBtn.innerHTML = `<i class="fas fa-dollar-sign me-2"></i>Retirar $${potentialWinnings.toLocaleString('es-CL')}`;
+          cashoutBtn.disabled = false; // Asegurarse de que esté habilitado
 
-          // --- ¡NUEVA LÓGICA DE FIN DE JUEGO! ---
           if (currentLane === 5) {
-            // El jugador ha llegado al último carril visible
             gameStatus.innerHTML = `
               <strong>¡FELICIDADES!</strong> ¡Has llegado al final! | 
               <strong>Ganancia Máxima:</strong> $${potentialWinnings.toLocaleString('es-CL')}
             `;
-            // Deshabilitar botón de avanzar
             advanceBtn.disabled = true;
             advanceBtn.innerHTML = `<i class="fas fa-flag-checkered me-2"></i>Camino Completado`;
-            
-            // Resaltar botón de cobrar
             cashoutBtn.classList.remove('btn-primary');
             cashoutBtn.classList.add('btn-success', 'btn-lg', 'flex-grow-1');
           } else {
-            // El juego continúa normal
             gameStatus.innerHTML = `
               <strong>Carril Actual:</strong> ${currentLane} | 
               <strong>Ganancia Potencial:</strong> $${potentialWinnings.toLocaleString('es-CL')} |
               <strong>Riesgo de Morir:</strong> ${nextRisk > 50 ? 50 : nextRisk}%
             `;
-            
-            // Asegurarse de que los botones estén normales
-            advanceBtn.disabled = false;
+            advanceBtn.disabled = false; // Habilitado
             advanceBtn.innerHTML = `<i class="fas fa-arrow-up me-2"></i>Cruzar Siguiente Carril`;
             cashoutBtn.classList.add('btn-primary');
             cashoutBtn.classList.remove('btn-success', 'btn-lg', 'flex-grow-1');
