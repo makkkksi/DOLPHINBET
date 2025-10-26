@@ -123,11 +123,11 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="login.js"></script>
 
-  <script>
+ <script>
     document.addEventListener("DOMContentLoaded", function() {
     
       const jumpSound = new Audio('audio/salto.mp3');
-      const loseSound = new Audio('audio/muerte.mp3');
+      const loseSound = new Audio('audio/muerte.mp3'); // (Usando tu 'muerte.mp3')
     
       const startForm = document.getElementById('startForm');
       const gameControls = document.getElementById('gameControls');
@@ -145,7 +145,7 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
         return; 
       }
 
-      // --- FUNCIÓN PRINCIPAL DE API (MODIFICADA) ---
+      // --- FUNCIÓN PRINCIPAL DE API ---
       async function handleGameAction(action, monto = 0) {
         advanceBtn.disabled = true;
         cashoutBtn.disabled = true;
@@ -171,23 +171,16 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
           gameData = result.gameData;
 
           if (!gameInProgress) {
-            // --- INICIO DE LA CORRECCIÓN DE SONIDO ---
             if (result.msg.includes("atropellado")) {
-                // 1. Toca el sonido
                 loseSound.play();
-                // 2. Espera a que termine
                 loseSound.onended = function() {
-                    // 3. Muestra la alerta y recarga
                     alert(result.msg);
                     window.location.reload();
                 };
             } else {
-                // Si ganó (o se retiró), no hay sonido, solo alerta
                 alert(result.msg);
                 window.location.reload();
             }
-            // --- FIN DE LA CORRECCIÓN ---
-
           } else {
             if (action === 'advance') {
                 jumpSound.play();
@@ -198,12 +191,11 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
         } catch (err) {
           alert('Error: ' + err.message);
           if(action !== 'start' && action !== 'advance') window.location.reload(); 
-        } finally {
-          // Esta lógica se moverá a updateUI para evitar conflictos
-        }
+        } 
+        // El 'finally' se quita, la lógica se maneja en updateUI
       }
 
-      // --- FUNCIÓN PARA ACTUALIZAR LA INTERFAZ ---
+      // --- FUNCIÓN PARA ACTUALIZAR LA INTERFAZ (CORREGIDA) ---
       function updateUI() {
         if (gameInProgress) {
           startForm.classList.add('d-none');
@@ -211,15 +203,16 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
           
           const currentLane = gameData.lane;
           const potentialWinnings = gameData.winnings;
-          const nextRisk = 10 + (currentLane * 5); 
+          const nextRisk = 20 + (currentLane * 10); // Tu lógica de 20% + 10%
 
           const topPosition = (5 - currentLane) * 70 + 10;
           chicken.style.top = `${topPosition}px`;
           
           cashoutBtn.innerHTML = `<i class="fas fa-dollar-sign me-2"></i>Retirar $${potentialWinnings.toLocaleString('es-CL')}`;
-          cashoutBtn.disabled = false; // Asegurarse de que esté habilitado
+          cashoutBtn.disabled = false; 
 
           if (currentLane === 5) {
+            // Lógica para el carril final (ganar)
             gameStatus.innerHTML = `
               <strong>¡FELICIDADES!</strong> ¡Has llegado al final! | 
               <strong>Ganancia Máxima:</strong> $${potentialWinnings.toLocaleString('es-CL')}
@@ -228,19 +221,27 @@ if (isset($_SESSION['pollo_game']) && $_SESSION['pollo_game']['active']) {
             advanceBtn.innerHTML = `<i class="fas fa-flag-checkered me-2"></i>Camino Completado`;
             cashoutBtn.classList.remove('btn-primary');
             cashoutBtn.classList.add('btn-success', 'btn-lg', 'flex-grow-1');
+          
           } else {
+            // Lógica para el juego normal (carriles 0-4)
             gameStatus.innerHTML = `
               <strong>Carril Actual:</strong> ${currentLane} | 
               <strong>Ganancia Potencial:</strong> $${potentialWinnings.toLocaleString('es-CL')} |
-              <strong>Riesgo de Morir:</strong> ${nextRisk > 50 ? 50 : nextRisk}%
+              <strong>Riesgo de Morir:</strong> ${nextRisk > 75 ? 75 : nextRisk}%
             `;
+            
+            // --- INICIO DE LA CORRECCIÓN ---
+            // Estas 4 líneas estaban fuera del 'else', causando el error.
+            // Ahora están DENTRO del 'else'
             advanceBtn.disabled = false; // Habilitado
             advanceBtn.innerHTML = `<i class="fas fa-arrow-up me-2"></i>Cruzar Siguiente Carril`;
             cashoutBtn.classList.add('btn-primary');
             cashoutBtn.classList.remove('btn-success', 'btn-lg', 'flex-grow-1');
+            // --- FIN DE LA CORRECCIÓN ---
           }
-
+          
         } else {
+          // Lógica si no hay juego en progreso
           startForm.classList.remove('d-none');
           gameControls.classList.add('d-none');
           chicken.style.top = '360px'; // Posición inicial

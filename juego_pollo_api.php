@@ -92,7 +92,7 @@ switch ($action) {
         }
 
         // Lógica de riesgo: 10% en carril 0, 15% en 1, 20% en 2, etc. Máx 50%.
-        $risk_percent = min(10 + ($currentLane * 5), 50);
+        $risk_percent = min(20 + ($currentLane * 10), 75);
         $roll = rand(1, 100);
 
         // SI MUERE (El roll está dentro del porcentaje de riesgo)

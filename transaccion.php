@@ -70,8 +70,9 @@ $connObj->closeConnection();
                 <form id="abonarForm">
                   <div class="mb-3">
                     <label for="montoAbonar" class="form-label">Monto a abonar (CLP)</label>
-                    <input type="number" class="form-control" id="montoAbonar" placeholder="Ej: 5000" min="1000" required>
-                  </div>
+                    
+                    <input type-="number" class="form-control" id="montoAbonar" placeholder="Mín: $1.000 / Máx: $100.000" min="1000" max="100000" required>
+                    </div>
                   <button type="submit" class="btn btn-success w-100">
                     <i class="fas fa-credit-card me-2"></i>Pagar con Webpay
                   </button>
@@ -87,7 +88,7 @@ $connObj->closeConnection();
                 <form id="retirarForm">
                   <div class="mb-3">
                     <label for="montoRetirar" class="form-label">Monto a retirar (CLP)</label>
-                    <input type="number" class="form-control" id="montoRetirar" placeholder="Máx: $<?php echo $saldo_formateado; ?>" max="<?php echo $saldo_actual; ?>" required>
+                    <input type="number" class="form-control" id="montoRetirar" placeholder="Máx: $<?php echo $saldo_formateado; ?>" min="1" max="<?php echo $saldo_actual; ?>" required>
                   </div>
                   <button type="submit" class="btn btn-danger w-100">
                     <i class="fas fa-university me-2"></i>Solicitar Retiro
@@ -184,21 +185,28 @@ $connObj->closeConnection();
   <?php include 'footer.html'; ?>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="login.js"></script> <script>
-    // Pasamos variables de PHP a JS
+  <script src="login.js"></script> 
+  
+  <script>
     const saldoActual = <?php echo $saldo_actual; ?>;
     const webpayModal = new bootstrap.Modal(document.getElementById('webpayModal'));
-    let montoAAbonar = 0; // Variable global para guardar el monto
+    let montoAAbonar = 0; 
 
     // --- MANEJO DE ABONO (WEBPAY) ---
     document.getElementById('abonarForm').addEventListener('submit', function(e) {
       e.preventDefault();
       montoAAbonar = parseInt(document.getElementById('montoAbonar').value);
 
+      // ===== INICIO DE CAMBIO (JAVASCRIPT) =====
       if (montoAAbonar < 1000) {
         alert('El monto mínimo para abonar es $1.000');
         return;
       }
+      if (montoAAbonar > 100000) {
+        alert('El monto máximo para abonar es $100.000');
+        return;
+      }
+      // ===== FIN DE CAMBIO (JAVASCRIPT) =====
 
       // 1. Mostrar modal y estado de carga
       document.getElementById('webpayLoading').style.display = 'block';
@@ -218,10 +226,8 @@ $connObj->closeConnection();
       document.getElementById('webpayForm').style.display = 'none';
       document.getElementById('webpaySuccess').style.display = 'block';
       
-      // 4. Enviar al backend REAL
       handleTransaction('abonar', montoAAbonar);
       
-      // 5. Cerrar modal y recargar página
       setTimeout(() => {
         webpayModal.hide();
         window.location.reload();
@@ -267,7 +273,6 @@ $connObj->closeConnection();
             alert('¡Retiro exitoso! La página se recargará.');
             window.location.reload();
           }
-          // (El abono se maneja en el modal)
         } else {
           alert('Error: ' + result.msg);
         }

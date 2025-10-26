@@ -1,13 +1,11 @@
 <?php
 session_start();
 
-// 1. BLOQUE DE PROTECCIÓN
 if (!isset($_SESSION['user_id'])) {
     header('Location: index.php?error=not_logged_in');
     exit;
 }
 
-// 2. RECUPERAR DATOS DEL USUARIO
 $saldo_actual = $_SESSION['user_saldo'] ?? 0;
 ?>
 <!DOCTYPE html>
@@ -35,7 +33,6 @@ $saldo_actual = $_SESSION['user_saldo'] ?? 0;
       min-height: 350px;
       position: relative;
 
-      /* Centrado vertical */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -46,7 +43,7 @@ $saldo_actual = $_SESSION['user_saldo'] ?? 0;
       gap: 20px;
       height: 120px;
       position: relative;
-      width: 100%; /* Ocupa el espacio del flex */
+      width: 100%; 
     }
     .token {
       width: 100px;
@@ -55,7 +52,7 @@ $saldo_actual = $_SESSION['user_saldo'] ?? 0;
       border: 5px solid #333;
       border-radius: 50%;
       cursor: pointer;
-      position: absolute; /* Para la animación */
+      position: absolute; 
       transition: transform 0.4s ease-in-out;
       display: flex;
       justify-content: center;
@@ -64,7 +61,7 @@ $saldo_actual = $_SESSION['user_saldo'] ?? 0;
       color: #FFD700;
       user-select: none; 
     }
-    /* Posiciones iniciales */
+    /* Ios. iniciales */
     #token-0 { transform: translateX(-120px); }
     #token-1 { transform: translateX(0); }
     #token-2 { transform: translateX(120px); }
@@ -84,12 +81,12 @@ $saldo_actual = $_SESSION['user_saldo'] ?? 0;
 
         <div class="card shadow-lg card-profile">
           <div class="card-header">
-             <h4 class="mb-0 text-center fw-bold">Pepito Paga Doble</h4>
+             <h4 class="mb-0 text-center fw-bold text-white">Pepito Paga Doble</h4>
           </div>
           <div class="card-body">
             
             <form id="startForm">
-              <p>¡Pepito te muestra la ficha! ¿Podrás seguirla? Apuesta y veamos...</p>
+              <p>¡Pepito muestra una ficha! Siguela y apreta la ganadora.</p>
               <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
                 <input type="number" class="form-control" id="montoApostar" placeholder="Monto (Mín: 100)" min="100" max="<?php echo $saldo_actual; ?>" required>
