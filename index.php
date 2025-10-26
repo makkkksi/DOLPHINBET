@@ -96,7 +96,7 @@ La mayoria de cosas son codigo del boostrap.
     <div class="row text-center">
       <div class="col-md-4 mb-4">
         <a href="pepito.php">
-        <img src="IMG/pepito.png" alt="pepito" class="img-juegos"></a>
+        <img src="IMG/pepito.webp" alt="pepito" class="img-juegos"></a>
       </div>
       <div class="col-md-4 mb-4">
         <a href="id.html">
